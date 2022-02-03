@@ -1,0 +1,19 @@
+- SELECT * FROM albums
+
+- SELECT * FROM albums WHERE Title LIKE 'Great%'
+
+- SELECT COUNT(*) FROM albums
+
+- SELECT * FROM albums WHERE Title NOT LIKE '%music%'
+
+- SELECT albums.AlbumId, artists.Name FROM albums INNER JOIN artists ON albums.ArtistId = artists.ArtistId WHERE Name ='AC/DC'
+
+- SELECT albums.AlbumId, albums.Title, artists.Name FROM albums INNER JOIN artists ON albums.ArtistId = artists.ArtistId WHERE Name ='AC/DC'
+
+- SELECT tracks.Name FROM tracks INNER JOIN albums ON albums.AlbumId = tracks.AlbumId WHERE tracks.AlbumId = 1
+
+- SELECT SUM(UnitPrice) FROM (SELECT tracks.TrackId, tracks.Name, invoice_items.UnitPrice FROM tracks  INNER JOIN invoice_items ON invoice_items.TrackId = tracks.TrackId WHERE tracks.AlbumId = 1)
+
+- SELECT SUM(UnitPrice), SUM(Milliseconds) FROM (SELECT tracks.TrackId, tracks.Name, tracks.Milliseconds, invoice_items.UnitPrice FROM tracks  INNER JOIN invoice_items ON invoice_items.TrackId = tracks.TrackId WHERE tracks.AlbumId = 1)
+
+- SELECT SUM(UnitPrice) FROM tracks INNER JOIN (SELECT * FROM artists INNER JOIN albums ON albums.ArtistId = artists.ArtistId WHERE artists.ArtistId = 58) AS artists_tracks ON artists_tracks.AlbumId = tracks.AlbumId
